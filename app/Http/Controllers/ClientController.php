@@ -3,13 +3,21 @@
 namespace ProjManager\Http\Controllers;
 
 use Illuminate\Http\Request;
+use ProjManager\Repositories\ClientRepository;
 
-use ProjManager\Models\Client;
-use ProjManager\Http\Requests;
-use ProjManager\Http\Controllers\Controller;
 
 class ClientController extends Controller
 {
+    /**
+     * @var ClientRepository
+     */
+    private $repository;
+
+    public function __construct(ClientRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,17 +25,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return \ProjManager\Models\Client::all();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $this->repository->all();
     }
 
     /**
@@ -38,7 +36,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        return Client::create($request->all());
+        return $this->repository->create($request->all());
     }
 
     /**
@@ -49,19 +47,9 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        return Client::find($id);
+        return $this->repository->find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -72,7 +60,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Client::find($id)->update($request->all());
+        $this->repository->find($id)->update($request->all());
     }
 
     /**
@@ -83,6 +71,6 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        Client::find($id)->delete();
+        $this->repository->find($id)->delete();
     }
 }

@@ -145,6 +145,7 @@ return [
         ProjManager\Providers\AppServiceProvider::class,
         ProjManager\Providers\EventServiceProvider::class,
         ProjManager\Providers\RouteServiceProvider::class,
+        ProjManager\Providers\ProjManagerRepositoryProvider::class,
 
     ],
 
