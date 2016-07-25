@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(ProjManager\User::class, function (Faker\Generator $faker) {
+$factory->define(ProjManager\Models\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
@@ -20,7 +20,7 @@ $factory->define(ProjManager\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(ProjManager\Client::class, function (Faker\Generator $faker) {
+$factory->define(ProjManager\Models\Client::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'responsible' => $faker->name,
