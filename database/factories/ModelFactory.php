@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(ProjManager\User::class, function ($faker) {
+$factory->define(ProjManager\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
@@ -19,3 +19,15 @@ $factory->define(ProjManager\User::class, function ($faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(ProjManager\Client::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'responsible' => $faker->name,
+        'email' => $faker->email,
+        'phone' => $faker->phoneNumber,
+        'address' => $faker->address,
+        'obs' => $faker->sentence
+    ];
+});
+
