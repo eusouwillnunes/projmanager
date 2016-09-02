@@ -20,9 +20,9 @@ class CreateProjectsTable extends Migration
             $table->foreign('client_id')->references('id')->on('clients');
             $table->string('name');
             $table->string('description');
-            $table->float('progress');
-            $table->string('status');
-            $table->timestamp('due_date');
+            $table->integer('progress');
+            $table->smallInteger('status');
+            $table->date('due_date');
             $table->timestamps();
 
         });

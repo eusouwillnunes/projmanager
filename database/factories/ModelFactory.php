@@ -31,3 +31,13 @@ $factory->define(ProjManager\Entities\Client::class, function (Faker\Generator $
     ];
 });
 
+$factory->define(ProjManager\Entities\Project::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'description' => $faker->paragraph(),
+        'progress' => $faker->randomFloat(0,0,100),
+        'status' => $faker->randomFloat(0,0,5),
+        'due_date' => $faker->dateTimeBetween('now', '3 years')
+    ];
+});
+
