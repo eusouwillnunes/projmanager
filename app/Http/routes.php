@@ -15,13 +15,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Rota para a obtenção todos os registros da Entidade Client
-Route::get('client', 'ClientController@index');
+Route::group(['prefix'=>'client'], function (){
+    //Rota para a obtenção todos os registros da Entidade Client
+    Route::get('/', 'ClientController@index');
 //Rota para a obtenção de um registro correspondente da Entidade Client
-Route::get('client/{id}', 'ClientController@show');
+    Route::get('/{id}', 'ClientController@show');
 //Rota para a inserção de um registro da Entidade Client
-Route::post('client', 'ClientController@store');
+    Route::post('/', 'ClientController@store');
 //Rota para a atualização de um registro da Entidade Client
-Route::put('client/{id}', 'ClientController@update');
+    Route::put('/{id}', 'ClientController@update');
 //Rota para a exclusão de um registro da Entidade Client
-Route::delete('client/{id}', 'ClientController@destroy');
+    Route::delete('/{id}', 'ClientController@destroy');
+});
+
+Route::group(['prefix'=>'project'], function (){
+    //Rota para a obtenção todos os registros da Entidade Project
+    Route::get('/', 'ProjectController@index');
+//Rota para a obtenção de um registro correspondente da Entidade Project
+    Route::get('/{id}', 'ProjectController@show');
+//Rota para a inserção de um registro da Entidade Project
+    Route::post('/', 'ProjectController@store');
+//Rota para a atualização de um registro da Entidade Project
+    Route::put('/{id}', 'ProjectController@update');
+//Rota para a exclusão de um registro da Entidade Project
+    Route::delete('/{id}', 'ProjectController@destroy');
+});
