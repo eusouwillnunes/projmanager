@@ -8,6 +8,7 @@
 
 namespace ProjManager\Services;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Prettus\Validator\Exceptions\ValidatorException;
 use ProjManager\Repositories\ClientRepository;
 use ProjManager\Validators\ClientValidator;
@@ -27,6 +28,19 @@ class ClientService
     {
         $this->repository = $repository;
         $this->validator = $validator;
+    }
+
+    public function show($id){
+        try{
+            //Validação de Procura
+            $this->repository->skipPresenter()->find($id);
+            return $this->repository->find($id);
+        }catch (ModelNotFoundException $e){
+            return [
+                'error' => true,
+                'message' => 'Cliente não encontrado.'
+            ];
+        }
     }
 
     /**
@@ -58,11 +72,17 @@ class ClientService
 
         try {
             $this->validator->with($data)->passesOrFail();
+            $this->repository->skipPresenter()->find($id);
             return $this->repository->update($data, $id);
         } catch (ValidatorException $e) {
             return [
                 'error' => true,
                 'message' => $e->getMessageBag()
+            ];
+        } catch (ModelNotFoundException $e){
+            return [
+                'error' => true,
+                'message' => 'Cliente não encontrado.'
             ];
         }
     }
