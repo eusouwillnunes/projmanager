@@ -15,7 +15,7 @@ $factory->define(ProjManager\Entities\User::class, function (Faker\Generator $fa
     return [
         'name' => $faker->name,
         'email' => $faker->email,
-        'password' => str_random(10),
+        'password' => '12345',
         'remember_token' => str_random(10),
     ];
 });
@@ -33,11 +33,20 @@ $factory->define(ProjManager\Entities\Client::class, function (Faker\Generator $
 
 $factory->define(ProjManager\Entities\Project::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'description' => $faker->paragraph(),
+        'owner_id' => rand(1,5),
+        'client_id' => rand(1,5),
+        'name' => $faker->sentence(2),
+        'description' => $faker->sentence,
         'progress' => $faker->randomFloat(0,0,100),
         'status' => $faker->randomFloat(0,0,5),
         'due_date' => $faker->dateTimeBetween('now', '3 years')
     ];
 });
 
+$factory->define(ProjManager\Entities\ProjectNote::class, function (Faker\Generator $faker) {
+    return [
+        'project_id' => rand(1,5),
+        'title' => $faker->sentence,
+        'note' => $faker->sentences(4, true),
+    ];
+});

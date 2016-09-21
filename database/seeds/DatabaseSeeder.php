@@ -14,17 +14,10 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        factory('ProjManager\Entities\User')->create(
-            [
-                'name' => 'Willian',
-                'email' => 'willian@gmail.com',
-                'password' => bcrypt(123456),
-                'remember_token' => str_random(10),
-            ]
-        );
-
+        $this->call(UserTableSeeder::class);
         $this->call(ClientTableSeeder::class);
         $this->call(ProjectTableSeeder::class);
+        $this->call(ProjectNoteTableSeeder::class);
 
         Model::reguard();
     }

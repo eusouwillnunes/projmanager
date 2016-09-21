@@ -28,7 +28,22 @@ Route::group(['prefix'=>'client'], function (){
     Route::delete('/{id}', 'ClientController@destroy');
 });
 
-Route::group(['prefix'=>'project'], function (){
+Route::group(['prefix'=>'/project'], function (){
+
+    Route::group(['prefix'=>'/{id}'], function (){
+
+        Route::group(['prefix' => '/note'], function (){
+
+            Route::get('/', 'ProjectNotesController@index');
+            Route::get('/{noteId}', 'ProjectNotesController@show');
+            Route::post('/', 'ProjectNotesController@store');
+            Route::put('/{noteId}', 'ProjectNotesController@update');
+            Route::delete('/{noteId}', 'ProjectNotesController@destroy');
+
+        });
+
+    });
+
     //Rota para a obtenção todos os registros da Entidade Project
     Route::get('/', 'ProjectController@index');
 //Rota para a obtenção de um registro correspondente da Entidade Project

@@ -3,7 +3,6 @@
 namespace ProjManager\Http\Controllers;
 
 use Illuminate\Http\Request;
-use ProjManager\Entities\Client;
 use ProjManager\Repositories\ProjectRepository;
 use ProjManager\Services\ProjectService;
 

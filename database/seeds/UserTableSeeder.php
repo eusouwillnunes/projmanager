@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class ProjectTableSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,9 +11,8 @@ class ProjectTableSeeder extends Seeder
      */
     public function run()
     {
-
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        \ProjManager\Entities\Project::truncate();
-        factory(\ProjManager\Entities\Project::class, 10)->create();
+        \ProjManager\Entities\User::truncate();
+        factory(\ProjManager\Entities\User::class, 10)->create();
     }
 }

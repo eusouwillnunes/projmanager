@@ -11,21 +11,21 @@ namespace ProjManager\Services;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Prettus\Validator\Exceptions\ValidatorException;
-use ProjManager\Repositories\ProjectRepository;
-use ProjManager\Validators\ProjectValidator;
+use ProjManager\Repositories\ProjectNoteRepository;
+use ProjManager\Validators\ProjectNoteValidator;
 
-class ProjectService
+class ProjectNoteService
 {
     /**
-     * @var ProjectNRepository
+     * @var ProjectNoteRepository
      */
     private $repository;
     /**
-     * @var ProjectValidator
+     * @var ProjectNoteValidator
      */
     private $validator;
 
-    public function __construct(ProjectRepository $repository, ProjectValidator $validator)
+    public function __construct(ProjectNoteRepository $repository, ProjectNoteValidator $validator)
     {
         $this->repository = $repository;
         $this->validator = $validator;
@@ -52,7 +52,7 @@ class ProjectService
         }catch (ModelNotFoundException $e){
             return [
                 'error' => true,
-                'message' => 'Projeto não encontrado.'
+                'message' => 'Anotação não encontrada.'
             ];
         }
     }
@@ -73,7 +73,7 @@ class ProjectService
         }catch (ModelNotFoundException $e){
             return [
                 'error' => true,
-                'message' => 'Projeto não encontrado.'
+                'message' => 'Anotação não encontrada.'
             ];
         }
     }
@@ -85,22 +85,22 @@ class ProjectService
             $this->repository->skipPresenter()->find($id)->delete();
             return [
                 'success' => true,
-                'message' => 'Registro Apagado com Sucesso.'
+                'message' => 'Anotação Apagada com Sucesso.'
             ];
         } catch (QueryException $e) {
             return [
                 'error' => true,
-                'message' => 'Projeto não pode ser apagado pois existe um ou mais projetos vinculados a ele.'
+                'message' => 'Anotação não pode ser apagada pois existe um ou mais projetos vinculados a ele.'
             ];
         } catch (ModelNotFoundException $e) {
             return [
                 'error' => true,
-                'message' => 'Projeto não encontrado.'
+                'message' => 'Anotação não encontrada.'
             ];
         } catch (\Exception $e) {
             return [
                 'error' => true,
-                'message' => 'Ocorreu um erro ao excluir o Projeto.'
+                'message' => 'Ocorreu um erro ao excluir a Anotação.'
             ];
         }
     }
